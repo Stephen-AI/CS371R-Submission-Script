@@ -19,11 +19,12 @@ for you.
     1. To avoid doing this every time you open a new terminal store this command in your .bashrc file  
         run vi ~/.bashrc and paste command from above ^ at the bottom  
 1. Now run the script like:  
-    zip_shell -e <your eid> -n <project number> -m <the main class> -l <modified or added files>  
+    zip_shell -e <your eid> -n <project number> -m <the main class> -l <modified or added files>             -c <path to the corpora>  
 
 ### Explanation:
 - project number, e.g -n 0, for project 0
 - main class, class with the 'main' method
+- corpora, path to the directory of the coropora
 - modified or added files, if I changed InvertedIndex.java and created a new file  called MatrixMultiply.java. Create a text file containing text called sources.txt for example:
 			InvertedIndex.java
 			MatrixMultiply.java 
