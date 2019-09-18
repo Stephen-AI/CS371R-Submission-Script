@@ -15,11 +15,11 @@ for you.
     └── zip_shell.sh <----  
 
 1. Let the system know where to find your script so you can run it on the terminal.  
-    1. Run: export PATH=$PATH:<path to script folder> on the terminal  
+    1. Run: export PATH=$PATH:[path to script folder] on the terminal  
     1. To avoid doing this every time you open a new terminal store this command in your .bashrc file  
         run vi ~/.bashrc and paste command from above ^ at the bottom  
 1. Now run the script like:  
-    zip_shell -e <your eid> -n <project number> -m <the main class> -l <modified or added files>             -c <path to the corpora>  
+    zip_shell -e <your eid> -n [project number] -m [the main class] -l [modified or added files] -c [path to the corpora]
 
 ### Explanation:
 - project number, e.g -n 0, for project 0
