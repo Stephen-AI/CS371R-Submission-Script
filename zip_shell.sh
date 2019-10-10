@@ -5,15 +5,20 @@ CLASSLIST=""
 MAINCLASS=""
 CORPORA=""
 TRACENAME=""
-while getopts e:n:l:m:c:t: o
+BINARY=""
+CONTROL=""
+N="0"
+while getopts e:n:l:m:b:t:z:f:* o
 do
     case $o in
         e) EID="$OPTARG";;
         n) PROJNUM="$OPTARG";;
         l) CLASSLIST="$OPTARG";;
         m) MAINCLASS="$OPTARG";;
-        c) CORPORA="$OPTARG";;
         t) TRACENAME="$OPTARG";;
+        b) BINARY="-binary";;
+        z) CONTROL="-control";;
+        f) N="$OPTARG";;
     esac
 done
 shift $OPTIND-1
@@ -24,4 +29,4 @@ main_class=$(find ir -name "${MAINCLASS}")
 IFS='.' # hyphen (-) is set as delimiter
 read -ra ADDR <<< "$main_class"
 class="${ADDR[0]}"
-script -c "java ${class} -html -feedback ${CORPORA}" "${trace_file}"
+script -c "java ${class} ${BINARY} ${CONTROL} /u/mooney/ir-code/corpora/cf/ /u/mooney/ir-code/queries/cf/queries-rated/ ./n${N}/${TRACENAME} ${N}" "${trace_file}"
