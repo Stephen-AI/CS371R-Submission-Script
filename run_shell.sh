@@ -1,27 +1,29 @@
+#Put your information here
+EID="sa46979"
+PROJNUM="2"
+
 ZIPINDIR="proj2_sa46979_outputs"
 GRAPHDIR="graphs"
-mkdir -p "${ZIPINDIR}/n1"
-mkdir -p "${ZIPINDIR}/n3"
-mkdir -p "${ZIPINDIR}/n5"
-mkdir -p "${GRAPHDIR}/n1"
-mkdir -p "${GRAPHDIR}/n3"
-mkdir -p "${GRAPHDIR}/n5"
 rm proj2_sa46979_exp_trace.txt
-for i in {1..5..2}
+for i in {1..1..2}
     do
         mkdir "n${i}"
-        ./zip_shell.sh -e sa46979 -m ExperimentRelFeedbackRated.java -n 2 -l sources.txt -t rated -f ${i}
+        mkdir -p "${ZIPINDIR}/n${i}"
+        mkdir -p "${GRAPHDIR}/n${i}"
+        ./zip_shell.sh -e $EID -m ExperimentRelFeedbackRated.java -n $PROJNUM -l sources.txt -t rated -f ${i}
         cp "n${i}/rated" "${ZIPINDIR}/n${i}/"
         cp "n${i}/rated.ndcg" "${ZIPINDIR}/n${i}/"
         ./zip_shell.sh -e sa46979 -m ExperimentRelFeedbackRated.java -b 0 -n 2 -l sources.txt -t binary -f ${i}
         cp "n${i}/binary" "${ZIPINDIR}/n${i}/"
         cp "n${i}/binary.ndcg" "${ZIPINDIR}/n${i}/"
         ./zip_shell.sh -e sa46979 -m ExperimentRelFeedbackRated.java -z 0 -n 2 -l sources.txt -t control -f ${i}
+        #copy for submitting format
         cp "n${i}/control" "${ZIPINDIR}/n${i}/"
         cp "n${i}/control.ndcg" "${ZIPINDIR}/n${i}/"
         cd "n${i}"
-        gnuplot "combined.gplot" | ps2pdf - "../${GRAPHDIR}/n${i}/combined-n${i}.pdf"
-        gnuplot "combined.ndcg.gplot" | ps2pdf - "../${GRAPHDIR}/n${i}/combinedNDCG-n${i}.pdf"
+        #plot graphs
+        gnuplot "../combined.gplot" | ps2pdf - "../${GRAPHDIR}/n${i}/combined-n${i}.pdf"
+        gnuplot "../combined.ndcg.gplot" | ps2pdf - "../${GRAPHDIR}/n${i}/combinedNDCG-n${i}.pdf"
         cd ..
     done
 cd "${ZIPINDIR}"
