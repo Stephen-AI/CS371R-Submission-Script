@@ -23,11 +23,16 @@ do
 done
 shift $OPTIND-1
 python3 submit.py -eid $EID -projnum $PROJNUM -classlist $CLASSLIST
-trace_file=$(echo "proj${PROJNUM}_${EID}_${TRACENAME}_trace.txt" | tr -d "\r")
-echo $trace_file
+prefix="proj${PROJNUM}_${EID}"
+trace_file="${prefix}_${TRACENAME}_trace.txt"
 main_class=$(find ir -name "${MAINCLASS}")
+actual_trace="${prefix}_exp_trace.txt"
 IFS='.' # hyphen (-) is set as delimiter
 read -ra ADDR <<< "$main_class"
 class="${ADDR[0]}"
 echo "java ${class} ${BINARY} ${CONTROL} /u/mooney/ir-code/corpora/cf/ /u/mooney/ir-code/queries/cf/queries-rated/ ./n${N}/${TRACENAME} ${N}"
+touch $actual_trace
 script -c "java ${class} ${BINARY} ${CONTROL} /u/mooney/ir-code/corpora/cf/ /u/mooney/ir-code/queries/cf/queries-rated/ ./n${N}/${TRACENAME} ${N}" "${trace_file}"
+echo "cat ${trace_file} >> ${actual_trace}"
+cat "${trace_file}" >> "${actual_trace}"
+rm "${trace_file}"

@@ -6,6 +6,7 @@ mkdir -p "${ZIPINDIR}/n5"
 mkdir -p "${GRAPHDIR}/n1"
 mkdir -p "${GRAPHDIR}/n3"
 mkdir -p "${GRAPHDIR}/n5"
+rm proj2_sa46979_exp_trace.txt
 for i in {1..5..2}
     do
         mkdir "n${i}"
