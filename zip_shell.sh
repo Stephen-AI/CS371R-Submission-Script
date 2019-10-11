@@ -29,4 +29,5 @@ main_class=$(find ir -name "${MAINCLASS}")
 IFS='.' # hyphen (-) is set as delimiter
 read -ra ADDR <<< "$main_class"
 class="${ADDR[0]}"
+echo "java ${class} ${BINARY} ${CONTROL} /u/mooney/ir-code/corpora/cf/ /u/mooney/ir-code/queries/cf/queries-rated/ ./n${N}/${TRACENAME} ${N}"
 script -c "java ${class} ${BINARY} ${CONTROL} /u/mooney/ir-code/corpora/cf/ /u/mooney/ir-code/queries/cf/queries-rated/ ./n${N}/${TRACENAME} ${N}" "${trace_file}"
