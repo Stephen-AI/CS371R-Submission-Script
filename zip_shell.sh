@@ -32,7 +32,7 @@ read -ra ADDR <<< "$main_class"
 class="${ADDR[0]}"
 echo "java ${class} ${BINARY} ${CONTROL} /u/mooney/ir-code/corpora/cf/ /u/mooney/ir-code/queries/cf/queries-rated/ ./n${N}/${TRACENAME} ${N}"
 touch $actual_trace
-script -c "java ${class} ${BINARY} ${CONTROL} /u/mooney/ir-code/corpora/cf/ /u/mooney/ir-code/queries/cf/queries-rated/ ./n${N}/${TRACENAME} ${N}" "${trace_file}"
+script -c "java ${class} ${BINARY} ${CONTROL} -stem /u/mooney/ir-code/corpora/cf/ /u/mooney/ir-code/queries/cf/queries-rated/ ./n${N}/${TRACENAME} ${N}" "${trace_file}"
 echo "cat ${trace_file} >> ${actual_trace}"
 cat "${trace_file}" >> "${actual_trace}"
 rm "${trace_file}"

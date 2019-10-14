@@ -5,7 +5,7 @@ PROJNUM="2"
 ZIPINDIR="proj2_sa46979_outputs"
 GRAPHDIR="graphs"
 rm proj2_sa46979_exp_trace.txt
-for i in {1..1..2}
+for i in {1..5..2}
     do
         mkdir "n${i}"
         mkdir -p "${ZIPINDIR}/n${i}"
@@ -13,10 +13,10 @@ for i in {1..1..2}
         ./zip_shell.sh -e $EID -m ExperimentRelFeedbackRated.java -n $PROJNUM -l sources.txt -t rated -f ${i}
         cp "n${i}/rated" "${ZIPINDIR}/n${i}/"
         cp "n${i}/rated.ndcg" "${ZIPINDIR}/n${i}/"
-        ./zip_shell.sh -e sa46979 -m ExperimentRelFeedbackRated.java -b 0 -n 2 -l sources.txt -t binary -f ${i}
+        ./zip_shell.sh -e $EID -m ExperimentRelFeedbackRated.java -b 0 -n 2 -l sources.txt -t binary -f ${i}
         cp "n${i}/binary" "${ZIPINDIR}/n${i}/"
         cp "n${i}/binary.ndcg" "${ZIPINDIR}/n${i}/"
-        ./zip_shell.sh -e sa46979 -m ExperimentRelFeedbackRated.java -z 0 -n 2 -l sources.txt -t control -f ${i}
+        ./zip_shell.sh -e $EID -m ExperimentRelFeedbackRated.java -z 0 -n 2 -l sources.txt -t control -f ${i}
         #copy for submitting format
         cp "n${i}/control" "${ZIPINDIR}/n${i}/"
         cp "n${i}/control.ndcg" "${ZIPINDIR}/n${i}/"
