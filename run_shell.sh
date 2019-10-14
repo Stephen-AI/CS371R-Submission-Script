@@ -5,12 +5,13 @@ PROJNUM="2"
 ZIPINDIR="proj2_sa46979_outputs"
 GRAPHDIR="graphs"
 rm proj2_sa46979_exp_trace.txt
+./run-with-input.sh -e $EID -f "" -m InvertedIndexRated.java -n $PROJNUM -l sources.txt -t rated -c /u/mooney/ir-code/corpora/cs-faculty
 for i in {1..5..2}
     do
         mkdir "n${i}"
         mkdir -p "${ZIPINDIR}/n${i}"
         mkdir -p "${GRAPHDIR}/n${i}"
-        ./zip_shell.sh -e $EID -m ExperimentRelFeedbackRated.java -n $PROJNUM -l sources.txt -t rated -f ${i}
+        ./zip_shell.sh -e $EID -m ExperimentRelFeedbackRated.java -n $PROJNUM -l sources.txt -t ratedExp -f ${i}
         cp "n${i}/rated" "${ZIPINDIR}/n${i}/"
         cp "n${i}/rated.ndcg" "${ZIPINDIR}/n${i}/"
         ./zip_shell.sh -e $EID -m ExperimentRelFeedbackRated.java -b 0 -n 2 -l sources.txt -t binary -f ${i}
