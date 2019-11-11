@@ -16,3 +16,4 @@ cat $TEMP_TRACE >> $RETRIEVE_TRACE
 ./zip_shell.sh -p $PREFIX -m PageRankInvertedIndex.java -t temp -w 10.0 -h 0 -r $CRAWL_DIR
 cat $TEMP_TRACE >> $RETRIEVE_TRACE
 rm $TEMP_TRACE
+mv $CRAWL_DIR/page_ranks.txt "${PREFIX}_page_ranks.txt"
