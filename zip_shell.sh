@@ -22,5 +22,5 @@ main_class=$(find ir -name "${MAINCLASS}")
 IFS='.' # hyphen (-) is set as delimiter
 read -ra ADDR <<< "$main_class"
 class="${ADDR[0]}"
-echo "java ${class} ${K} ${N} ${D} ${WEIGHT} ${CORPORA}"
-script -c "java ${class} ${K} ${D}" "${trace_file}"
+echo "java ${class} ${K} ${N} ${WEIGHT} ${CORPORA}"
+script -c "java ${class} ${K} ${N}" "${trace_file}"

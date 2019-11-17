@@ -1,5 +1,5 @@
 EID="sa46979"
-PROJNUM="3"
+PROJNUM="4"
 PREFIX="proj${PROJNUM}_${EID}"
 MAIN_TRACE="${PREFIX}_trace.txt"
 TEMP_TRACE="${PREFIX}_temp_trace.txt"
@@ -18,4 +18,9 @@ cat $TEMP_TRACE >> $MAIN_TRACE
 cat $TEMP_TRACE >> $MAIN_TRACE
 ./zip_shell.sh -p $PREFIX -m TestRocchio.java -n 0 -t temp
 cat $TEMP_TRACE >> $MAIN_TRACE
+gnuplot "combineGraphs/combined.gplot" | ps2pdf - "test-graph.pdf"
+gnuplot "combineGraphs/combinedTrain.gplot" | ps2pdf - "train-graph.pdf"
 rm $TEMP_TRACE
+rm *.data
+rm *.gplot
+notify-send "Project 4 script done"
